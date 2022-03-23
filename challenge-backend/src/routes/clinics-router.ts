@@ -13,10 +13,23 @@ router.get('/', async (req: Request, res: Response) => {
 
 router.post('/', async (req: Request, res: Response) => {
     const clinic = req.body;
-    if (!clinic) {
+    if (
+        !clinic ||
+        !clinic.name || clinic.address_type.trim() === '' ||
+        !clinic.cnpj || clinic.address_type.trim() === '' ||
+        !clinic.address_type || clinic.address_type.trim() === '' ||
+        !clinic.number || clinic.address_type.trim() === '' ||
+        !clinic.neighborhood || clinic.address_type.trim() === '' ||
+        !clinic.complement || clinic.address_type.trim() === '' ||
+        !clinic.city || clinic.address_type.trim() === '' ||
+        !clinic.state || clinic.address_type.trim() === '' ||
+        !clinic.country || clinic.address_type.trim() === '' ||
+        !clinic.lat  ||
+        !clinic.long 
+        ) {
         throw new ParamMissingError();
     }
-    const createdClinic = await clinicService.addOne(clinic)
+    await clinicService.addOne(clinic)
     return res.status(CREATED).end();
 });
 
