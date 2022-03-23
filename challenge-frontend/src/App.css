@@ -4,23 +4,64 @@
 }
 
 form.page-form {
-  width: 400px;
-
+  width: 350px;
   background: #ffffff;
-
-
   padding: 20px 40px;
-
   position: absolute;
   top: 30px;
   left: 40px;
-
   z-index: 1;
 }
+
+.page-form-search-bar {
+  width: 614px;
+  background: #ffffff00;
+  position: absolute;
+  top: 2px;
+  left: 445px;
+  z-index: 1;
+}
+
+.css-fk2uow-MuiButtonBase-root-MuiListItem-root:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  background-color:#bdb7b7!important;
+}
+
+
 
 #page-map .leaflet-container {
   z-index: 0;
 }
+
+.clinic-card-left {
+  left: 40px;
+  z-index: 1;
+  position: absolute;
+  top: 512px
+}
+
+.clinic-card-center {
+  left: 480px;
+  z-index: 1;
+  position: absolute;
+  top: 512px
+}
+
+.clinic-card-right {
+  left: 920px;
+  z-index: 1;
+  position: absolute;
+  top: 512px
+}
+
+
+.search-bar {
+  left: 100px;
+  z-index: 1;
+  position: absolute;
+}
+
 
 form.page-form fieldset {
   border: 0;
@@ -28,12 +69,10 @@ form.page-form fieldset {
 
 form.page-form fieldset legend {
   width: 100%;
-
-  font-size: 32px;
-  line-height: 34px;
+  font-size: 22px;
+  line-height: 24px;
   color: #5c8599;
   font-weight: 700;
-
   border-bottom: 1px solid #d3e2e5;
   margin-bottom: 20px;
   padding-bottom: 20px;
@@ -79,7 +118,6 @@ form.page-form button.confirm-button {
   background-color: #ffffff;
   color: #111111;
   font-weight: 800;
-
   transition: background-color 0.2s;
 }
 
@@ -112,4 +150,71 @@ form.page-form button.confirm-button:hover {
 
 #page-map .map-popup .leaflet-popup-tip-container {
   display: none;
+ 
+}
+
+.container {
+  position: relative;
+  height: 50px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  margin-top: 24px;
+  
+}
+
+.coordinates-container {
+  position: relative;
+  height: 50px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  margin-top: 24px;
+  
+}
+
+.text_input {
+  height: 44px;
+  width: 70%;
+  padding: 0;
+  line-height: 30px;
+  font-size: 20px;
+  padding: 0;
+  background: #f5f8fa;
+  border: 1px solid #d3e2e5;
+  outline: none;
+  padding: 0 16px;
+}
+
+.coordinate_text_input {
+  height: 44px;
+  width: 50%;
+  padding: 0;
+  line-height: 30px;
+  font-size: 20px;
+  padding: 0;
+  background: #f5f8fa;
+  border: 1px solid #d3e2e5;
+  outline: none;
+  padding: 0 16px;
+}
+.text_input:focus {
+  outline: none;
+}
+
+.btn {
+  position: absolute; 
+  height: 44px;
+  line-height: 50px;
+  right: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  color: black;
+  border: none;
+  width: 30%;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #6c79f5;
+  cursor: pointer;
 }
