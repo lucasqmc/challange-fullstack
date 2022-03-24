@@ -22,13 +22,6 @@ form.page-form {
   z-index: 1;
 }
 
-.css-fk2uow-MuiButtonBase-root-MuiListItem-root:hover {
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  background-color:#bdb7b7!important;
-}
-
-
 
 #page-map .leaflet-container {
   z-index: 0;
@@ -125,28 +118,6 @@ form.page-form button.confirm-button:hover {
   background-color: #6c79f5;
 }
 
-/* Pop Up - Marker */
-
-#page-map .map-popup .leaflet-popup-content-wrapper {
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
-  box-shadow: none;
-}
-
-#page-map .map-popup .leaflet-popup-content h3 {
-  color: #000000;
-  font-size: 15px;
-  font-weight: bold;
-  margin: 8px 12px;
-}
-
-#page-map .map-popup .leaflet-popup-content p {
-  color: #042f38;
-  font-size: 12px;
-  font-weight: bold;
-  margin: 8px 12px;
-  line-height: 15px;
-}
 
 #page-map .map-popup .leaflet-popup-tip-container {
   display: none;
@@ -212,9 +183,32 @@ form.page-form button.confirm-button:hover {
   border: none;
   width: 30%;
   font-weight: bold;
+
+}
+
+.form-search-btn {
+  position: absolute; 
+  height: 44px;
+  line-height: 50px;
+  right: 0;
+  top: 0;
+  margin: 0;
+  color:#8fa7b3;
+  border: none;
+  width: 30%;
+  font-size: 17px;
+  padding-left: 2px;
+  padding-right: 2px;
+  border: 1px solid #d3e2e5;
+
 }
 
 .btn:hover {
+  background-color: #6c79f5;
+  cursor: pointer;
+}
+
+.form-search-btn:hover {
   background-color: #6c79f5;
   cursor: pointer;
 }

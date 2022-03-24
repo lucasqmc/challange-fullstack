@@ -31,7 +31,7 @@ type ClinicAddress = {
   long: string;
 };
 
-type FilteredClinic = {
+type ClinicCardInfo = {
   name: string,
   address_type: string,
   lat: string,
@@ -41,7 +41,7 @@ type FilteredClinic = {
 
 function App() {
   const [clinics, setClinics] = useState<Array<ClinicAddress>>([])
-  const [filteredClinics, setFilteredClinics] = useState<Array<FilteredClinic>>([])
+  const [filteredClinics, setFilteredClinics] = useState<Array<ClinicCardInfo>>([])
   const [position, setPosition] = useState(initialPosition);
   const [clinicAddress, setClinicAddress] = useState<ClinicAddress | null>(null);
   const [name, setName] = useState("");
@@ -50,6 +50,7 @@ function App() {
   const [addressLat, setAddressLat] = useState("");
   const [addressLong, setAddressLong] = useState("");
   const [location, setLocation] = useState(initialPosition);
+  const [oldLocation, setOldLocation] = useState(initialPosition);
   
   async function getClinics() {
     ClinicService.getClinics().then(result => {
@@ -65,9 +66,7 @@ function App() {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-
     if (!address || !name || !cnpj || !addressLong || !addressLat) return;
-
     const clinicRequestObject = {
       "name": name,
       "cnpj": cnpj,
@@ -82,17 +81,16 @@ function App() {
       "long": clinicAddress?.long
     }
     const requestResult =  await ClinicService.createClinic(clinicRequestObject)
-    console.log('RESULTADO DA REQ POST:', requestResult)
     if(requestResult.status == 201) {
       getClinics()
       clearForm()
     }
-
   }
 
   function ChangeMapView({coords} : {coords:any}) {
+    
     const map = useMap();
-    map.setView(coords, 15);
+    if(JSON.stringify(coords) != JSON.stringify(oldLocation))map.setView(coords, 20);
     return null;
   }
 
@@ -111,7 +109,6 @@ function App() {
     const geocodeApiResult = await addressSearch(address)
     const firstResult = geocodeApiResult.data.results[0]
     if(firstResult){
-      console.log(firstResult)
       setAddressLat(firstResult.geometry.location.lat.toString())
       setAddressLong(firstResult.geometry.location.lng.toString())
     }
@@ -133,7 +130,7 @@ function App() {
     
     <div id="page-map">
 
-      <SearchBar clinics={clinics} setLocation={setLocation} setFilteredClinics={setFilteredClinics}></SearchBar>
+      <SearchBar  clinics={clinics} setLocation={setLocation} setOldLocation={setOldLocation} setFilteredClinics={setFilteredClinics}></SearchBar>
 
       <form onSubmit={handleSubmit} className="page-form">
         <fieldset>
@@ -163,9 +160,8 @@ function App() {
              value={address}
              onChange={(event) => setAddress(event.target.value)}
             />
-            <div  onClick={searchAddressOnRegister} className="btn">BUSCAR</div>
+            <div  onClick={searchAddressOnRegister} className="form-search-btn">BUSCAR</div>
           </div>
-
           <div className="coordinates-container" >
             <input
              type="text" 
@@ -231,27 +227,33 @@ function App() {
         )
       }
       <MapContainer
-        center={location}
+        center={initialPosition}
         zoom={15}
         style={{ width: "100%", height: "100%" }}
       >
         <TileLayer
           url={`https://a.tile.openstreetmap.org/{z}/{x}/{y}.png`}
         />
-        <ChangeMapView coords={location} />
 
-        { filteredClinics.length === 0 && clinics.map((clinic: ClinicAddress) => {
+        {location !== oldLocation && (
+            <ChangeMapView coords={location} />
+          )
+        }
+
+        { filteredClinics.length === 0 && clinics.map((clinic: any) => {
           return (
             <Marker
+              key={`f-${clinic.id}`}
               icon={mapPinIcon}
               position={{ lat: Number(clinic.lat), lng: Number(clinic.long) }}
             />
           )
         })}
 
-        {filteredClinics.length > 0 && filteredClinics.map((clinic: FilteredClinic) => {
+        {filteredClinics.length > 0 && filteredClinics.map((clinic: any) => {
           return (
             <Marker
+              key={`c-${clinic.id}`}
               icon={mapPinIcon}
               position={{ lat: Number(clinic.lat), lng: Number(clinic.long) }}
             />

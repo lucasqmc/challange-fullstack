@@ -5,11 +5,12 @@ import { addressSearch } from '../../services/gecodeSearchSevice'
 type Props = {
   clinics: any,
   setLocation: (value: any) => void;
+  setOldLocation: (value: any) => void;
   setFilteredClinics: (value: any) => void;
 }
 
 export const SearchBar = (props: Props) => {
-  const {clinics, setLocation, setFilteredClinics} = props
+  const {clinics, setLocation, setFilteredClinics,setOldLocation} = props
   const [searchBarAddress, setSearchBarAddress ] = useState("");
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
@@ -35,6 +36,7 @@ export const SearchBar = (props: Props) => {
         console.log('CLinicas filtradas:',filteredClinics)
         setFilteredClinics(filteredClinics)
         setLocation({ lat: firstResult.geometry.location.lat, lng: firstResult.geometry.location.lng })
+        setOldLocation({ lat: firstResult.geometry.location.lat, lng: firstResult.geometry.location.lng })
       }
     }
   }
