@@ -15,15 +15,15 @@ router.post('/', async (req: Request, res: Response) => {
     const clinic = req.body;
     if (
         !clinic ||
-        !clinic.name || clinic.address_type.trim() === '' ||
-        !clinic.cnpj || clinic.address_type.trim() === '' ||
-        !clinic.address_type || clinic.address_type.trim() === '' ||
-        !clinic.number || clinic.address_type.trim() === '' ||
-        !clinic.neighborhood || clinic.address_type.trim() === '' ||
-        !clinic.complement || clinic.address_type.trim() === '' ||
-        !clinic.city || clinic.address_type.trim() === '' ||
-        !clinic.state || clinic.address_type.trim() === '' ||
-        !clinic.country || clinic.address_type.trim() === '' ||
+        !clinic.name || clinic.name.trim() == '' ||
+        !clinic.cnpj || clinic.cnpj.trim() == '' ||
+        !clinic.address_type || clinic.address_type.trim() == '' ||
+        !clinic.number || clinic.number.trim() === '' ||
+        !clinic.neighborhood || clinic.neighborhood.trim() == '' ||
+        !clinic.complement || clinic.complement.trim() == '' ||
+        !clinic.city || clinic.city.trim() == '' ||
+        !clinic.state || clinic.state.trim() == '' ||
+        !clinic.country || clinic.country.trim() === '' ||
         !clinic.lat  ||
         !clinic.long 
         ) {
