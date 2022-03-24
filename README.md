@@ -25,8 +25,9 @@
 * Instale as depêndencias com o comando 'npm i' 
 * Inicie o servidor de desenvolvimento com o comando 'npm start'
 
+# Imagem da aplicação rodando:
 
-
+![appimg](appimg.png)
 
 # Desafio - Desenvolvedor Fullstack
 
