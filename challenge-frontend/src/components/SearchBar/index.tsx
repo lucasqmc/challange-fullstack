@@ -23,20 +23,16 @@ export const SearchBar = (props: Props) => {
       const geocodeApiResult = await addressSearch(searchBarAddress)
       console.log('Resultado requisição SEARCH BAR:', geocodeApiResult)
       const firstResult = geocodeApiResult.data.results[0]
-      const filteredClinics: any[] = []
       if(firstResult){
-        geocodeApiResult.data.results.forEach((result:any) => {
-          const foundClinic = clinics.find((clinic:any) => {
-            const lat = result.geometry.location.lat
-            const long = result.geometry.location.lng
-            return Number(clinic.lat) === lat && Number(clinic.long) === long
-          })
-          if(foundClinic)filteredClinics.push(foundClinic)
+        const lat = firstResult.geometry.location.lat
+        const long = firstResult.geometry.location.lng
+        const clinicsOnCoordinate = clinics.filter((clinic: any) => {
+          return Number(clinic.lat) === lat && Number(clinic.long) === long
         })
-        console.log('CLinicas filtradas:',filteredClinics)
-        setFilteredClinics(filteredClinics)
-        setLocation({ lat: firstResult.geometry.location.lat, lng: firstResult.geometry.location.lng })
-        setOldLocation({ lat: firstResult.geometry.location.lat, lng: firstResult.geometry.location.lng })
+        console.log('CLinicas filtradas:',clinicsOnCoordinate)
+        setFilteredClinics(clinicsOnCoordinate)
+        setLocation({ lat: lat, lng: long })
+        setOldLocation({ lat: lat, lng: long })
       }
     }
   }
