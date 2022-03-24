@@ -1,3 +1,33 @@
+# Pré requisitos:
+
+* Node na versão 14 +
+* npm na versão 6 +
+* Postgres
+
+
+# Instruções para subir o Backend:
+
+* Crie uma base de dados postgres
+* Crie um arquivo ".env" na pasta challenge-backend
+* Entre na pasta do backend com o comando 'cd challenge-backend'
+* Insira as credenciais do banco postgres no arquivo ".env" na pasta challenge-backend:
+![backenv](backenv.png)
+* Instale as depêndencias com o comando 'npm i' 
+* Execute as migrações com o comando 'npx sequelize-cli db:migrate' ainda na pasta challenge-backend para criar a tabela clinics
+* Inicie o servidor de desenvolvimento com o comando 'npm run start:dev'
+
+# Instruções para subir o Frontend:
+
+* Entre na pasta do frontend com o comando 'cd challenge-frontend'
+* Crie um arquivo ".env" na pasta challenge-frontend
+* Insira a chave de api do google e o endereço do servidor, como na imagem (a chave de api será enviada por email):
+![frontenv](frontenv.png)
+* Instale as depêndencias com o comando 'npm i' 
+* Inicie o servidor de desenvolvimento com o comando 'npm start'
+
+
+
+
 # Desafio - Desenvolvedor Fullstack
 
 O objetivo deste desafio é avaliarmos o seu domínio em desenvolvimento fullstack, ou seja, sua organização, boas práticas com o código, criação e consumo de APIs Restfull, conhecimento dos frameworks e tecnologias utilizadas.
