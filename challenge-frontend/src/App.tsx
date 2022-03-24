@@ -45,6 +45,7 @@ function App() {
   const [position, setPosition] = useState(initialPosition);
   const [clinicAddress, setClinicAddress] = useState<ClinicAddress | null>(null);
   const [name, setName] = useState("");
+  const [requiredMessage, setRequiredMessage] = useState("");
   const [cnpj, setCnpj] = useState("");
   const [address, setAddress] = useState("");
   const [addressLat, setAddressLat] = useState("");
@@ -66,24 +67,35 @@ function App() {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    if (!address || !name || !cnpj || !addressLong || !addressLat) return;
-    const clinicRequestObject = {
-      "name": name,
-      "cnpj": cnpj,
-      "address_type": clinicAddress?.address_type,
-      "number": clinicAddress?.number,
-      "neighborhood": clinicAddress?.neighborhood,
-      "complement": clinicAddress?.complement,
-      "city": clinicAddress?.city,
-      "state": clinicAddress?.state,
-      "country": clinicAddress?.country,
-      "lat": clinicAddress?.lat ,
-      "long": clinicAddress?.long
+    if (
+      !address || address.trim() == '' ||
+      !name || name.trim() == '' ||
+      !cnpj || cnpj.trim() == '' ||
+      addressLong == '' || addressLat == ''
+    ) {
+      setRequiredMessage('Preencha todos os campos')
+      return
     }
-    const requestResult =  await ClinicService.createClinic(clinicRequestObject)
-    if(requestResult.status == 201) {
-      getClinics()
-      clearForm()
+    else {
+      setRequiredMessage('')
+      const clinicRequestObject = {
+        "name": name,
+        "cnpj": cnpj,
+        "address_type": clinicAddress?.address_type,
+        "number": clinicAddress?.number,
+        "neighborhood": clinicAddress?.neighborhood,
+        "complement": clinicAddress?.complement,
+        "city": clinicAddress?.city,
+        "state": clinicAddress?.state,
+        "country": clinicAddress?.country,
+        "lat": clinicAddress?.lat ,
+        "long": clinicAddress?.long
+      }
+      const requestResult =  await ClinicService.createClinic(clinicRequestObject)
+      if(requestResult.status == 201) {
+        getClinics()
+        clearForm()
+      }
     }
   }
 
@@ -183,6 +195,7 @@ function App() {
             />
           </div>
         </fieldset>
+        <p className="required-message">{requiredMessage}</p>
         <button className="confirm-button" type="submit">
           Cadastrar
         </button>

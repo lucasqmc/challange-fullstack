@@ -6,11 +6,30 @@
 form.page-form {
   width: 350px;
   background: #ffffff;
-  padding: 20px 40px;
+  padding: 15px 20px;
   position: absolute;
-  top: 30px;
+  top: 70px;
   left: 40px;
   z-index: 1;
+}
+
+@media only screen and (max-width: 500px ) {
+  form.page-form {
+    width: 330px;
+    background: #ffffff;
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    z-index: 1;
+  }
+  .page-form-search-bar {
+    width: 350px!important;
+    background: #ffffff00;
+    position: absolute;
+    top: 440px!important;
+    left: 0px!important;
+    z-index: 1;
+  }
 }
 
 .page-form-search-bar {
@@ -66,9 +85,7 @@ form.page-form fieldset legend {
   line-height: 24px;
   color: #5c8599;
   font-weight: 700;
-  border-bottom: 1px solid #d3e2e5;
   margin-bottom: 20px;
-  padding-bottom: 20px;
 }
 
 form.page-form .input-block + .input-block {
@@ -201,6 +218,10 @@ form.page-form button.confirm-button:hover {
   padding-right: 2px;
   border: 1px solid #d3e2e5;
 
+}
+
+.required-message {
+  color: red;
 }
 
 .btn:hover {
